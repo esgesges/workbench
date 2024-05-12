@@ -1,0 +1,316 @@
+                FUNZIONI HARDWARE
+-Codifica dei segnali analogici
+-Multiplazione TDM (time division multiplexing)
+-Rigenerazione
+-Modulazione
+
+
+
+                FUNZIONI SOFTWARE
+-Codifica di sorgente / canale
+-pacchettizzazione
+
+
+                VANTAGGI
+-maggiore immunità al rumore
+-"intelligenza"
+-flessibilità, efficenza, sicurezza
+-comunicazione multimediale / unificata
+
+
+                MODELLO
+sorgente -> codifica di sorgente
+formazione pacchetti
+codifica di canale -> modulatore
+
+canale fisico
+
+demodulatore -> decodifica di canale
+estrazione bit info
+decodifica di sorgente -> utilizzatore
+
+
+                TEORIA DELL'INFORMAZIONE (definizioni)
+
+studio scientifico dell'informazione e dei sistemi di telecomunicazione progettati per convogliarla
+
+-informazione: tutto ciò che consente di fare scelte e eliminare incertezze, unità di misura -> bit
+
+-bit: quantità di informazione necessaria per poternscegliere in modo corretto uno tra due eventi equiprobabili
+
+-velocità dell'informazione: calcolata in bit/s
+
+-codifica di sorgente: rappresentazione dei simboli in un alfabeto mediante simboli di un'altro alfabeto
+
+-rindondanza: presenza, nei messaggi emessi da una sorgente, di informazioni ripetute o non essenziali
+
+-compressione: riduzione di rindondanza
+
+-capacità di canale: espressa in bit/s, massima quantità di informazione che in un secondo il canale è in grado di trasmettere in modo affidabile 
+
+-il baud rate (capacità di trasmissione del canale) dipende dal bit rate (velocità di informazione della sorgente) e dall'eventuale codifica del canale.
+
+codifica di canale: il bit rate può essere maggiore del baud rate
+no codifica di canale: il baud rate e il bit rate coincidono numericamente
+
+
+capacità di canale con rumore bianco: C=0,332 * Bhz * (S/N)db   bit/secondo
+
+
+
+        CODIFICA DI CANALE PER PROTEZIONE CONTRO GLI ERRORI
+
+
+BER (bit error rate) (valuta la qualità del canale)= numero di bit errati / totale bit
+
+Metodi di controllo degli errori: 
+-rivelazione errori senza correzione
+-rivelazione errori e correzione per ritrasmissione
+-correzione errori effettuata dal ricevitore
+
+                RIVELAZIONE DEGLI ERRORI
+Codici a blocco per rivelazione errori:
+il messaggio viene diviso in blocchi e si controllano poi i blocchi
+per la rivelazione si usa -> controllo di parità / CRC / checksum
+
+        Controllo di parità:
+        essenzialmente si analizza la sequenza di codice corrispondente ad ogni carattere e si aggiunge un 8avo bit(pari o dispari, in base al numero
+        di 1)
+
+        CRC (cyclic redundancy check):
+        metodo per determinare i bit di controllo da inserire in coda ad un blocco di bit informativi per rilevare eventuali errori
+
+        checksum (somma di controllo):
+        insieme di metodi per eseguire operazioni algebriche sui bit che compongono un blocco dati.
+        per esempio si sommano (bit per bit) le "parole" del blocco, il risultato inserito in coda è il checksum 
+
+                CORREZIONE PER RITRASMISSIONE
+correzione degli errori per ritrasmissione:
+metodo usato nella trasmissione dati tra pc.
+per la rivelazione si usa il codice a blocco, per la correzione si usa la ripetizione dei blocchi affetti da errori
+viene implementata con -> ritrasmissione per richiesta esplicita (ARQ)/ ritrasmissione per timeout
+
+        ARQ:
+        il trasmettitore:
+                -suddivide il messaggio in blocchi, assegna un numero ad ogni blocco e invia tutto sul canale
+                -calcola il CRC, lo accoda ai bit e invia tutto sul canale
+        il ricevitore:
+                -verifica con il CRC che non ci sono errori
+                -se il CRC non dà problemi invia dati al destinatario e manda un ACK, il ricevitore dopo l'ACK cancella i dati dalla memoria
+                -se il CRC dà problemi scarta i dati sbagliati manda un NACK e si fa rimandare i dati
+
+                RITRASMISSIONE PER TIMEOUT
+timeout significa che il destinatario invia un ACK ma non invia il NACK, è il mittente a decidere se rimandare i dati seguendo  questo script:
+        -quando un blocco di bit è inviato fa partire un timer e attende l'ACK
+        -se non riceve l'ACK i blocchi vengono mandati ancora
+        -se i blocchi continuano a venire trasmessi il mittente considera la connessione persa persa
+
+                CORREZIONE FEC (Forward error correction)
+-il mittente usa la codifica convoluzionale, dove i bit generati dal codificatore dipendono anche da bit precedenti secondo regole prestabilite
+
+-il destinatario impiega un algoritmo di decodifica per effettuare la correzione degli errori
+
+        MODELLO
+sorgente digitale  -> codificatore FEC -> modulatore
+canale
+demodulatore -> decodificatore FEC 
+utilizzatore
+
+                TRASMISSIONE DATI
+insieme delle tecniche e problemi sul trasferimento a distanza di segnali informativi digitali tra processori
+
+DTE (data terminal equipment, mittente):
+        può rappresentare un computer, un router, un data tester, ecc.
+DCE (data comumunication equipment, destinatario):
+        preleva il segnale informativo del DTE e lo adatta al canale di comunicazione
+
+        TIPO DI COLLEGAMENTO
+punto-punto:
+        peer to peer
+multipunto:
+        un DTE comunica con più DTE
+        in questi collegamenti c'è master e slave
+
+        MODI DI FUNZIONAMENTO
+Simplex:
+        unidirezionale
+Half-duplex:
+        trasmette un DTE alla volta
+full-duplex:
+        comunicazione bidirezionale contemporanea
+        per eseguire un colloquio in FD si usano tre tecniche: FD a 4 fili / FD a divisione di banda / FD a cancellazione d'eco
+
+        TECNICHE DI DUPLEXING
+Fdd (frequency division duplex):
+        impiega 2 canali con frequenze portanti diverse
+Tdd (time dvision duplex):
+        definisce due intervalli di tempo (timeslot) che si alternano ciclicamente sulla stessa banda
+
+        TIPO DI TRASMISSIONE
+Parallela:
+        realizza un collegamento tra gli apparati con un verto numero di linee e trasmette contemporaneamente x bit alla volta
+Seriale:
+        invia sequenzialmente un linea
+
+        CLASSIFICAZIONE DEI DCE
+-in banda base
+-in banda traslata
+
+        PRINCIPALI INTERFACCE DTE-DCE
+nel collegamento tra DTE e DCE si distinguono:
+        -Attributi logici
+        -Attrbuti fisici
+
+
+USB -> bus esterno
+
+        CLASSIFICAZIONE DEI PROTOCOLLI
+protocolli -> regole di colloquio tra macchine, sovrintendono la comunicazione tra entita simili, sullo stello livello ISO-OSI(?)
+
+-protocolli sviluppati da organismi di standardardizzazione pubblici
+        Es. ITU, ISO, ETSI, ecc.
+-protocolli sviluppati da organismi internazionali privati
+        Es. IETF, IEEE
+-protocolli propietari sviluppati da singole aziende
+
+        OSI
+costituisce il modello di riferimento che definisce i concetti base
+il modello definisce 7 strati divisi in 2 parti:
+        3 strati inferiori:
+                affrontano i problemi della comunicazione attraverso reti
+                danno origine ai protocolli di ripetut
+        4 strati superiori:
+                affrontano problemi di alto livello 
+STRATI:
+        1) fisico
+        2) linea
+        3) rete
+        4) trasporto
+        5) sessione
+        6) presentazione
+        7) applicazione
+
+        OSI - LINEA(2)
+controlla lo scambio dati
+-su ogni tratta di linea
+-su un collegamento fisico
+
+frame -> PDU di un protocollo del layer 2
+
+i protocolli operano in due modalità:
+        -connection oriented - TCP:
+                quando è necessaria una comunicazione affidabile
+        -connectionless - UDP:
+                privilegia la velocità
+
+protocolli:
+        HDLC:
+                è connection oriented, opera su linee punto punto e multipunto
+        PPP:
+                utilizzato nei sistemi di accesso a internet, in collegamenti punto punto che adottano la suite tcp/ip
+
+
+
+
+              EVOLUZIONE DELLE RETI TELEFONICHE A COMMUTAZIONE DI CIRCUITO
+
+-anni 60 -- rete completamente analogica
+-inizia la digitalizzazione dei sistemi di trasmissione, resta analogico il collegamento su doppino telefonico tra utente e centrale telefonica
+-inizi degli anni novanta -- introdotta la connettività tra utenti comletamente digitale
+
+PSTN (rete telefonica pubblica commutata)
+POTS >> servizi offerti da PSTN 
+ISDN >> servizi supplementari offerti da PSTN
+
+        COMMUTAZIONE DI CIRCUITO
+la commutazione è quell'operazione che consente di instaurare un collegamento fisico temporaneo
+
+la trasmissione della voce, o fonia, ha bisogno di un costante delay
+
+le reti a commutazione di circuito si differenziano per i tipi di sistemi di accesso che impiegano i sistemi:
+        PSTN -> analogici su doppino
+        ISDN -> digitali su doppino
+        GSM -> via radio
+
+        EVOLUZIONE DI UNA CHIAMATA A COMMUTAZIONE DI CIRCUITO
+-Instaurazione della connessione
+-Mantenimento della connessione 
+-Abbattimento della connessione
+
+        LA RETE TELEFONICA PSTN
+è l'insieme dei mezzi trasmissivi necessari per consentire il colloquio tra utenti
+
+una rete PSTN comprende tre categorie:
+        sistemi di trasmissione:
+                consentono il trasferimento di segnali telefonici 
+        sistemi di segnalazione:
+                per segnalazione si intende lo scambio delle informazioni di servizio
+        sistemi di commutazione:
+                insieme dei dispositivi di commutazione
+
+        ARCHITETTURA DELLA RETE PSTN
+elementi fondamentali:
+        -linea di utente:
+                è il doppino telefonico che collega la presa dell'apparecchio
+        -centrali di commutazione:
+                centrali locali:
+                        centrali alle quali fanno capo le linee di utente 
+                centrali di transito:
+                        nodi di commutazione intermedi tramite i quali si realizzano i collegamenti telefonici non locali
+        -giunzioni
+        -CCSS7
+
+        LA RETE ISDN
+rete digitale integrata nei nei servizi, in grado di offrire molti servizi
+aspetti dell'ISDN:
+        connessione tra utenti ISDN completamente digitale
+        capacità di supportare molti servizi per fonia, dati, video
+        terminali dotati di interfacce standardizzate
+        ha i limiti posti dalla capacità di 64 kbit/s 
+tipi di canali:
+        canale B:
+                canale a commutazione di circuito che dispone una capacità di trasporto di 64 kbit/s
+        canale D:
+                principalmente trasporta la segnalazione che permette il controllo del canale B
+tipi di accessi:
+        base:
+                fornisce 2 canali B
+        primario:
+                fornisce 30 canali B e uno D
+
+
+        COMUNICAZIONI IN AUDIO E VIDEO
+VoIP -> trasporto della voce
+ToIP -> servizio completo
+        
+        PROTOCOLLI PER LA COMUNICAZIONE MULTIMEDIALE
+RTP -> per lo scambio di flussi audio e video
+SIP -> per lo scambio in formato testo di segnalazionie controllo
+
+                PIATTAFORME E SERVIZI CLOUD
+cloud computing 
+-> indica l'utilizzo di servizi ospitati su server collocati in data center
+->permette di ridurre i costi relativi alla gestione e manutenzione dell'infrastuttura IT
+servizio cloud -> funzionalità offerte attraverso il cloud computing
+
+modelli di servizio:
+        SaaS:
+                consiste nel rendere applicazioni software accessibili in rete
+        PaaS:
+                il fornitore dei servizi mette a disposizione del cliente l'insieme di piattaforme, OSs, linguaggi e librerie sui quali vengono eseguiti software
+        IaaS:
+                capacità di fornire hardware e dispositivi virtualizzati, componenti per il networking
+
+caratteristiche:
+        -on demand self-service
+        -broad network access
+        -resource pooling
+        -rapid elasticity
+        -measured service
+
+modelli di implementazione: 
+        -private cloud
+        -community cloud
+        -public cloud
+        -hybrid cloud
+        
