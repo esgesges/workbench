@@ -12,7 +12,7 @@ def getMessage(botToken):
     text = jResponse['result'][-1]['message']['text']
     if text == "/get":
         text = jResponse['result'][-2]['message']['text']
-
+    
     else:
         text = "aaa"
     return text

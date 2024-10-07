@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ferrian_filippo">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/atom/ferrian_filippo.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
