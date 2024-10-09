@@ -1,3 +1,23 @@
-#a{
-    color: blueviolet;    
+html{
+    background-image: url(https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+body{
+    padding-left: 35%;
+    padding-top: 10%;
+    zoom: 200%;
+}
+h2, p{
+    color: #cf871a;
+    background-color: #327272;
+    display: inline-block;
+    padding:5px 10px; 
+    border-radius: 20px;
+}
+button:hover{
+    background-color: cyan;
+    font-size: 20px;
 }
