@@ -10,6 +10,9 @@ body{
     padding-top: 10%;
     zoom: 200%;
 }
+button{
+    padding: 15px 32px;
+}
 h2, p{
     color: #cf871a;
     background-color: #327272;
@@ -19,5 +22,13 @@ h2, p{
 }
 button:hover{
     background-color: cyan;
-    font-size: 20px;
+}
+table{
+    border-width: 1;
+    border-radius: 1;
+    border-color: #cf871a;
+    background-color: black;
+}
+th{
+    size: 10;
 }
