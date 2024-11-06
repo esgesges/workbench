@@ -1,17 +1,19 @@
 html{
-    background-image: url(https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+    background-image: url(https://www.solidbackgrounds.com/download/2560x1440-blue-abstract-noise-free-website-background-image.jpg);
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
 }
-body{
-    padding-left: 35%;
-    padding-top: 10%;
-    zoom: 200%;
-}
+
 button{
-    padding: 15px 32px;
+    font-size: 80px;
+    background-color: #cf871a;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border-width: 4px;
 }
 h2, p{
     color: #cf871a;
@@ -24,11 +26,18 @@ button:hover{
     background-color: cyan;
 }
 table{
-    border-width: 1;
-    border-radius: 1;
-    border-color: #cf871a;
-    background-color: black;
+    margin-top: 10%;
+    margin-left: 20%;
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
 }
-th{
-    size: 10;
+
+#out{
+    margin-left: 10px;
+    border-radius: 5px;
+    background-image: url(https://clipground.com/images/website-background-patterns-clipart-3.jpg);
+    color: white;
+    font-size: 30px;
+    text-align: right;
 }
