@@ -19,14 +19,10 @@ if (isset($_POST["sbm"])) {
     if (is_string($_POST["op2"])) {
         $op2 = (int) $_POST["op2"];
     }
-    if($op1 > $op2){
-        $grt = "op1";
-        $lss = "op2";
-    } else {
-        $grt = "op2";
-        $lss = "op1";
-    }
-    echo $grt . " > " . $lss . "<br/>";
+    echo $op1 . " + " . $op2 . " = " . ($op1 + $op2) . "<br/>";
+    echo $op1 . " - " . $op2 . " = " . ($op1 - $op2) . "<br/>";
+    echo $op1 . " x " . $op2 . " = " . ($op1 * $op2) . "<br/>";
+    echo $op1 . " : " . $op2 . " = " . ($op1 / $op2) . "<br/>";
 }
 ?>
 </body>
