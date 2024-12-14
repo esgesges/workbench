@@ -1,23 +1,48 @@
 #!/usr/bin/env python3
+from time import sleep
 from tkinter import *
+import customtkinter
 import tkinter as tk
 import requests
 import subprocess
 import os
-
 # Keep track of widgets created in display_output
 output_widgets = {}
-
 def userinput(root):
-    label = tk.Label(root, text='Explain the command you want to run:')
-    label.pack()
 
-    textbox = tk.Entry(root, width=50)
-    textbox.pack()
+    textbox = customtkinter.CTkEntry(
+        master=root,
+        placeholder_text="\t\tInserisci comando",
+        placeholder_text_color="#454545",
+        font=("Arial", 14),
+        text_color="#ffffff",
+        height=100,
+        width=495,
+        border_width=2,
+        corner_radius=40,
+        border_color="#ffffff",
+        bg_color="#042a27",
+        fg_color="#ff2e2e",
+        )
+    textbox.place(x=70, y=50)
 
-    button = tk.Button(root, text='SEND',
-                       command=lambda: IO_AI(root, textbox.get()))
-    button.pack()
+    Button_id1 = customtkinter.CTkButton(
+        master=root,
+        text="SEND",
+        font=("undefined", 18),
+        text_color="#000000",
+        hover=True,
+        hover_color="#fe0101",
+        height=30,
+        width=95,
+        border_width=2,
+        corner_radius=16,
+        border_color="#ffffff",
+        bg_color="#042a27",
+        fg_color="#ff00dd",
+        command=lambda: IO_AI(root, textbox.get()),
+        )
+    Button_id1.place(x=600, y=80)
 
 def IO_AI(root, user_input):
     command = shard_ai_chatbot(user_input)
@@ -25,7 +50,7 @@ def IO_AI(root, user_input):
 
 def shard_ai_chatbot(user_input):
     # For testing purposes, return a dummy command
-    return "ls"
+    # return "touch ex.txt && ls && rm ex.txt && ls"
 
     # Uncomment the following lines for actual API integration
     API_KEY = "shard-R8zBNlSiAxmGeuILuE3mniQZzf9ictfMw"
@@ -34,6 +59,7 @@ def shard_ai_chatbot(user_input):
               "Your sole task is to interpret user input and generate a single "
               "shell command as output. Do not include explanations, context, "
               "or additional text. Remember that I am using Arch Linux. "
+              "if i need multiple commands, always separate them with &&"
               "Respond only with the command.")
 
     headers = {
@@ -70,13 +96,39 @@ def display_output(root, command):
         output_widgets["button"].destroy()
 
     # Create a new label to display the command
-    label = tk.Label(root, text=f'Command output: {command}')
-    label.pack()
+    label = customtkinter.CTkLabel(
+    master=root,
+    text=f"{command}",
+    font=("Arial", 18),
+    text_color="#ffffff",
+    height=130,
+    width=495,
+    corner_radius=13,
+    bg_color="#042a27",
+    fg_color="#ff2e2e",
+    )
+    label.place(x=60, y=190)
+
 
     # Create a new RUN button to execute the command
-    button = tk.Button(root, text='RUN',
-                       command=lambda: execute_shell_command(command))
-    button.pack()
+    button = customtkinter.CTkButton(
+        master=root,
+        text="RUN",
+        font=("undefined", 18),
+        text_color="#000000",
+        hover=True,
+        hover_color="#949494",
+        height=30,
+        width=95,
+        border_width=2,
+        corner_radius=16,
+        border_color="#ffffff",
+        bg_color="#042a27",
+        fg_color="#ff00dd",
+        command=lambda: execute_shell_command(command),
+        )
+    button.place(x=600, y=230)
+
 
     # Save references to the new widgets
     output_widgets["label"] = label
@@ -84,26 +136,72 @@ def display_output(root, command):
 
 def execute_shell_command(command):
     try:
-        if command.startswith('cd '):
-            directory = command.strip()[3:]
-            os.chdir(directory)
-            print("Changed directory to:", os.getcwd())
-        else:
-            result = subprocess.run(command, shell=True, capture_output=True, text=True)
-            output = result.stdout if result.stdout else result.stderr
+        # Split the string by '&&' and strip whitespace from each part
+        commands = [cmd.strip() for cmd in command.split(' && ')]
 
-        # Display the output in the GUI
-        output_label = tk.Label(root, text=f'Command Output:\n{output}', wraplength=500, justify="left", bg="#90ee90")
-        output_label.pack()
+
+        # Print each command individually
+        for i, command in enumerate(commands, start=1):
+            print(f"Command {i}: {command}")
+            if command.startswith('cd '):
+                directory = command.strip()[3:]
+                os.chdir(directory)
+                # Display the output in the GUI
+                out_label = customtkinter.CTkLabel(
+                    master=root,
+                    text=f"changed directory to {directory}",
+                    font=("Arial", 18),
+                    text_color="#ffffff",
+                    height=430,
+                    width=495,
+                    corner_radius=13,
+                    bg_color="#042a27",
+                    fg_color="#ff2e2e",
+                    )
+                out_label.place(x=60, y=350)
+            else:
+                result = subprocess.run(command, shell=True, capture_output=True, text=True)
+                output = result.stdout if result.stdout else result.stderr
+                if output=="":
+                    output = "Working on it..."
+                out_label = customtkinter.CTkLabel(
+                    master=root,
+                    text=f"{output}",
+                    font=("Arial", 18),
+                    text_color="#ffffff",
+                    height=430,
+                    width=495,
+                    corner_radius=13,
+                    bg_color="#042a27",
+                    fg_color="#ff2e2e",
+                    )
+                out_label.place(x=60, y=350)
+            root.update()
+            sleep(5)
+            out_label.destroy()
+        out_label = customtkinter.CTkLabel(
+            master=root,
+            text=f"{output}",
+            font=("Arial", 18),
+            text_color="#ffffff",
+            height=430,
+            width=495,
+            corner_radius=13,
+            bg_color="#042a27",
+            fg_color="#ff2e2e",
+            )
+        out_label.place(x=60, y=350)
+
+
     except Exception as e:
         print("An error occurred:", str(e))
 
 if __name__ == "__main__":
     # Initialize the main Tkinter window
     root = tk.Tk()
-    root.title("AI Command Executor")
-    root['bg'] = '#90ee90'
-    root.geometry("500x300")
+    root.title("ask-ai")
+    root.geometry("800x850")
+    root.configure(bg="#042a27")
 
     # Set up the input UI
     userinput(root)
