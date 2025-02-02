@@ -46,7 +46,11 @@ let APP = {
             console.log("started sending...");
             data = { username : username, answer1: APP.answer1, answer2: APP.answer2, answer3: APP.answer3, answer4: APP.answer4, answer5: APP.answer5, answer6: APP.answer6, answer7: APP.answer7, answer8: APP.answer8 };
     
+<<<<<<< HEAD
             fetch("http://13.61.9.50:8080", {
+=======
+            fetch("http://localhost:8000", {
+>>>>>>> c58b4a150c753bd009155cfb6f16dae6411333bd
                 method: "POST", // Use the POST method
                 headers: {
                     "Content-Type": "application/json", // Specify JSON content
