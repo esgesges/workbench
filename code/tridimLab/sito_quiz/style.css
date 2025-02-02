@@ -1,0 +1,68 @@
+html{
+    background-color: aqua;
+
+}
+#form{
+    background-color: white;
+    width: 50%;
+    height: 250px;
+    margin-top: 20%;
+    margin-left: 25%;
+    border-radius: 10px;
+}
+#selector{
+    margin-top: 15%;
+    text-align: center;
+}
+.sel{
+    border-radius: 4px;
+    border: 0;
+    margin-top: 5px;
+    width: 45px;
+    background-color: chartreuse;
+    box-shadow: 0.5px 0.5px;
+}
+.sel:active{
+    background-color: black;
+}
+#quiz_cont{
+    margin-left: 5%;
+    padding-top: 5%;
+    text-align: left;
+}
+#change{
+    margin-left: 17%;
+}
+.ans{
+    background-color: aquamarine;
+    border-radius: 4px;
+    padding: 5px;
+    margin-left: 20%;
+}
+#ans11{
+    margin-top: 3%;
+}
+#bn{
+    border: 0px;
+    background-color: white;
+}
+#back{
+    border-color: #cccccc;
+    background-color: white;
+    margin-top: 10%;
+    margin-left: 40px;
+    margin-right: 27%;
+    margin-bottom: 10px;
+}
+#next{
+    border-color: #cccccc;
+    background-color: white;
+    margin-bottom: 10px;
+}
+#send{
+    margin-right: 28%;
+    border-color: #cccccc;
+    background-color: white;
+    margin-bottom: 10px;
+}
+

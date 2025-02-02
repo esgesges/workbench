@@ -51,23 +51,14 @@ def sendToTelegram(botToken, text):
 
 
 def main():
-    x = 0
     botToken = "7090375373:AAHNBHKUGn4Odg5FYJb30nQoK63TJW4dw0E"
-    message = getMessage(botToken)
-    if message == "aaa":
-        print()
-    else:
-        
-        AIresponse = sendToAi(message)
-        result = sendToTelegram(botToken, AIresponse) 
-
-        print(message)
-        print(AIresponse)
-        print(result)
-        time.sleep(5)
+#    message = getMessage(botToken)
+#    AIresponse = sendToAi(message)
+    sendToTelegram(botToken, "AIresponse")
+    time.sleep(5)
 print("-----------------")
-#while True:
-main()
+while True:
+    main()
 #    break
 #    time.sleep(5)
 
