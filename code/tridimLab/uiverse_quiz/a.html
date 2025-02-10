@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="a.css">
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+        <script src="script.js"></script>
+        <link rel="stylesheet" href="new.css">
     </head>
     <body>
-        <div class="radio-input">
-            <div class="info">
-            <span class="question">What does CSS stand for?</span>
-            <span class="steps">3/10</span>
-             </div>
-            <input type="radio" id="value-1" name="value-radio" value="value-1">
-            <label for="value-1">Computer Style Sheets</label>
-            <input type="radio" id="value-2" name="value-radio" value="value-2">
-            <label for="value-2">Cascading Style Sheets</label>
-            <input type="radio" id="value-3" name="value-radio" value="value-3">
-            <label for="value-3">Creative Style Sheets</label>
-             <span class="result success">Congratulations!</span>
-             <span class="result error">Bad answer</span>
-          </div>
+        <div id="container">
+            <h1 id="titolo">Tridimlab Quiz</h1>
+            <p id="question">Quale componente di una stampante 3D FDM è responsabile dell'estrusione del filamento?</p>
+            <div id="selection">
+                <button class="sel" id="1">A) L'asse Z</button><br>
+                <button class="sel" id="2">B) L'estrusore</button><br>
+                <button class="sel" id="3">C) Il piatto riscaldato</button><br>
+                <button class="sel" id="4">D) Il telaio</button><br>
+            </div>
+            <div id="form">
+                <p><b>Inserisci il tuo username</b></p>
+                <input type="text" id="username" value="" placeholder="Username">
+                <button class="sel" id="send">INVIA</button>
+            </div>
+            <a id="ref" href="https://google.com">tridimlab.com</a>
+        </div>
           
     </body>
 </html>

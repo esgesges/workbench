@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grazie!</title>
+    <style>
+        body {
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 3rem;
+            color: #333;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let score = localStorage.getItem("quizScore") || 0;
+            document.getElementById("punteggio").innerText = "Il tuo punteggio è: " + score + "/5";
+        });
+    </script>
+    
+</head>
+<body><br>
+    <h1>Grazie per aver partecipato!</h1><br>
+    <p id="punteggio"></p><br>
+</body>
+</html>
