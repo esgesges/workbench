@@ -46,3 +46,6 @@ FROM Paziente P
 JOIN Visita V ON P.Id = V.IdPaziente
 WHERE (V.PressioneMax - V.PressioneMin) > 40
 GROUP BY P.Prov;
+
+ALTER TABLE Paziente
+ADD CONSTRAINT Paziente

@@ -1,4 +1,3 @@
-
 # libraries Import
 from tkinter import *
 import customtkinter
@@ -20,7 +19,6 @@ Button_id1 = customtkinter.CTkButton(
     text="SEND",
     font=("undefined", 18),
     text_color="#000000",
-    hover=True,
     hover_color="#fe0101",
     height=30,
     width=95,
@@ -63,7 +61,6 @@ Button_id4 = customtkinter.CTkButton(
     text="RUN",
     font=("undefined", 18),
     text_color="#000000",
-    hover=True,
     hover_color="#949494",
     height=30,
     width=95,

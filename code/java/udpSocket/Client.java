@@ -15,7 +15,7 @@ public class Client {
     public void comunica() {
         try {
 	        client = new DatagramSocket(4568);
-	        byte[] bonin = "bonin   ".getBytes();
+	        byte[] bonin = "hello".getBytes();
 	        sPacket = new DatagramPacket(bonin, bonin.length, InetAddress.getLocalHost(), 4567);
 	        client.send(sPacket);
 	        rPacket = new DatagramPacket(new byte[5], 5);
